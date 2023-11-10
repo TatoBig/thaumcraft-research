@@ -1,17 +1,22 @@
-import { motion, useDragControls } from 'framer-motion'
+import Aspects from "@/components/Aspects";
+import Board from "@/components/Board";
+import { motion, useDragControls } from "framer-motion";
+import Image from "next/image";
+import { useState } from "react";
 
 const Index = () => {
-  const controls = useDragControls()
+  const controls = useDragControls();
+  const [activeAspect, setActiveAspect] = useState("");
 
   return (
-    <div className="w-screen h-screen bg-black">
-      <motion.div
-        dragConstraints={{ left: 0, right: 300, top: 0, bottom: 300 }}
-        drag
-        dragControls={controls}
-        className="bg-orange-500 h-5 w-5"></motion.div>
+    <div className="w-screen h-screen bg-yellow-100 p-20 flex justify-between">
+      <Aspects
+        setActiveAspect={(a) => setActiveAspect(a)}
+        activeAspect={activeAspect}
+      />
+      <Board activeAspect={activeAspect} />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
